@@ -1,65 +1,365 @@
+:root {
+  --background: #ffffff;
+  --foreground: #020817;
+  --card: #ffffff;
+  --card-foreground: #020817;
+  --popover: #ffffff;
+  --popover-foreground: #020817;
+  --primary: #0f172a;
+  --primary-foreground: #f8fafc;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0f172a;
+  --radius: 0.5rem;
+}
+
 body {
-    margin: 0;
-    background: linear-gradient(180deg, rgb(117, 81, 194), rgb(255, 255, 255));
-    display: flex;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    height: 100vh;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    cursor: pointer;
-    transition: border-color 0.25s;
-    color: white;
-  }
-  button:hover {
-    border-color: #646cff;
-  }
-  button:focus,
-  button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
-  
-  ul {
-    padding-inline-start: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    margin: 8px 0;
-    border: 1px solid black;
-    gap: 1px;
-    background-color: black;
-    border-radius: 8px;
-    overflow: auto;
-  }
-  
-  li {
-    background-color: white;
-    padding: 8px;
-  }
-  
-  li:hover {
-    background: #dadbf9;
-  }
-  
-  a {
-    font-weight: 800;
-    text-decoration: none;
-  }
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+/* Shadcn Button Styles */
+.shadcn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  transition: colors 0.2s;
+  height: 40px;
+  padding: 8px 16px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+.shadcn-btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.shadcn-btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.shadcn-btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.shadcn-btn-primary:hover {
+  background-color: #1e293b;
+}
+
+.shadcn-btn-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+.shadcn-btn-secondary:hover {
+  background-color: #e2e8f0;
+}
+
+.shadcn-btn-destructive {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+}
+.shadcn-btn-destructive:hover {
+  background-color: #dc2626;
+}
+
+.shadcn-btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--input);
+  color: var(--foreground);
+}
+.shadcn-btn-outline:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.shadcn-btn-ghost {
+  background-color: transparent;
+  color: var(--foreground);
+}
+.shadcn-btn-ghost:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Shadcn Input Styles */
+.shadcn-input {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--input);
+  background-color: transparent;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  color: var(--foreground);
+}
+.shadcn-input::placeholder {
+  color: var(--muted-foreground);
+}
+.shadcn-input:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--background), 0 0 0 3px var(--ring);
+  border-color: var(--ring);
+}
+.shadcn-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.shadcn-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.shadcn-error {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--destructive);
+  margin-top: 4px;
+}
+
+/* Shadcn Select Styles */
+.shadcn-select {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--radius);
+  border: 1px solid var(--input);
+  background-color: transparent;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--foreground);
+  transition: box-shadow 0.2s;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 32px;
+}
+.shadcn-select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--background), 0 0 0 3px var(--ring);
+  border-color: var(--ring);
+}
+
+/* Shadcn Table Styles */
+.shadcn-table-container {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.shadcn-table {
+  width: 100%;
+  caption-side: bottom;
+  text-size-adjust: 100%;
+  font-size: 14px;
+  border-collapse: collapse;
+}
+.shadcn-table th {
+  height: 48px;
+  padding: 0 16px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  border-bottom: 1px solid var(--border);
+  background-color: var(--background);
+}
+.shadcn-table td {
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+}
+.shadcn-table tbody tr {
+  transition: background-color 0.2s;
+}
+.shadcn-table tbody tr:hover {
+  background-color: var(--muted);
+}
+.shadcn-table tbody tr.selected {
+  background-color: var(--muted);
+}
+
+/* Shadcn Checkbox */
+.shadcn-checkbox {
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+.shadcn-checkbox::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--primary-foreground);
+  background-color: var(--primary-foreground);
+  transform-origin: center;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.shadcn-checkbox:checked {
+  background-color: var(--primary);
+}
+.shadcn-checkbox:checked::before {
+  transform: scale(1);
+}
+.shadcn-checkbox:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+}
+
+/* Shadcn Dialog */
+.shadcn-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+.shadcn-dialog-content {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 100%;
+  max-width: 500px;
+  animation: zoomIn 0.2s ease-out;
+}
+.shadcn-dialog-title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin: 0 0 6px 0;
+  color: var(--foreground);
+}
+.shadcn-dialog-description {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin: 0 0 16px 0;
+}
+
+/* Shadcn Card */
+.shadcn-card {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+.shadcn-card-header {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 6px;
+}
+.shadcn-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.shadcn-card-description {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+.shadcn-card-content {
+  padding: 24px;
+  padding-top: 0;
+}
+.shadcn-card-footer {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  padding-top: 0;
+}
+
+/* Toast */
+.shadcn-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  animation: slideInUp 0.3s ease-out;
+}
+.shadcn-toast-success {
+  border-color: #10b981;
+  background-color: #ecfdf5;
+  color: #064e3b;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
